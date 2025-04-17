@@ -15,19 +15,18 @@
     :root{--primary:#004d40;--accent:#00a896}
     *{box-sizing:border-box;margin:0;padding:0}
     body{
-      position:relative; /* allow ::before/::after fixed layers */
+      position:relative;
       font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
-      background:url("Images/SOLAR.jpg") center/cover fixed no-repeat; /* fallback */
+      background:url("Images/SOLAR.jpg") center/cover fixed no-repeat;
       color:#333333;
       overflow-x:hidden;
     }
-    /* glassy UI/UX wallpaper overlay */
     body::before{
       content:"";
       position:fixed;inset:0;
       background:linear-gradient(135deg,rgba(255,255,255,.25) 0%,rgba(255,255,255,.05) 100%),
                  url("uiux-glassy-wallpaper.jpg") center/cover no-repeat fixed;
-      pointer-events:none;z-index:-2; /* keep behind content */
+      pointer-events:none;z-index:-2;
     }
     body::after{
       content:"";
@@ -38,7 +37,8 @@
     }
 
     .glass{
-      backdrop-filter:blur(6px);background:rgba(255, 255, 255, 0.596);
+      backdrop-filter:blur(6px);
+      background:rgba(255,255,255,.596);
       border-radius:1rem;padding:2rem;max-width:950px;margin:3rem auto;
       box-shadow:0 4px 20px rgba(0,0,0,.2)
     }
@@ -70,10 +70,18 @@
       background:rgba(255,255,255,.96);overflow-y:auto;
       transform:translateX(100%);transition:transform .4s ease;
       box-shadow:-4px 0 15px rgba(0,0,0,.25);z-index:1000;
-      padding:2rem 1.5rem 4rem;
+      padding:3.2rem 1.5rem 4rem; /* extra top‑padding for close btn */
     }
     #dashboard.open{transform:translateX(0)}
     canvas{max-width:100%;margin:2rem auto}
+
+    /* close button */
+    #dashClose{
+      position:absolute;top:1rem;right:1rem;background:none;border:none;
+      font-size:1.8rem;color:var(--primary);cursor:pointer;line-height:1;
+    }
+    #dashClose:hover{color:var(--accent)}
+
     #qualList{margin-top:1rem;padding-left:1rem}
     #qualList li{margin-bottom:.6rem}
   </style>
@@ -99,6 +107,7 @@
 
   <!-- ===== Survey Form ===== -->
   <form id="surveyForm">
+
     <!-- === Demographics === -->
     <h2>Demographic Information</h2>
 
@@ -252,7 +261,9 @@
 </main>
 
 <!-- ===== Sliding Dashboard Panel ===== -->
-<section id="dashboard">
+<section id="dashboard" aria-label="Survey dashboard">
+  <button id="dashClose" title="Close dashboard"><i class="fas fa-times"></i></button>
+
   <!-- Demographic Overview -->
   <h2>Demographic Overview</h2>
   <canvas id="ageChart"></canvas>
@@ -293,10 +304,15 @@ function requireAdmin(action){
   }else if(pw !== null){ alert('Incorrect password.'); }
 }
 
-/* ---------- Button wiring ---------- */
+/* ---------- Admin Button wiring ---------- */
 document.getElementById('csvBtn').addEventListener('click',()=>requireAdmin(exportCSV));
 document.getElementById('dashBtn').addEventListener('click',()=>requireAdmin(toggleDashboard));
 document.getElementById('clrBtn').addEventListener('click',()=>requireAdmin(clearData));
+
+/* ---------- Close button & Esc key ---------- */
+document.getElementById('dashClose').addEventListener('click', closeDashboard);
+window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDashboard(); });
+function closeDashboard(){ document.getElementById('dashboard').classList.remove('open'); }
 
 /* ---------- Submit ---------- */
 function submitSurvey(){
@@ -333,7 +349,8 @@ function exportCSV(){
   if(!surveyData.length){alert('No data to download.');return;}
   const blob = new Blob([buildCSV()],{type:'text/csv;charset=utf-8'});
   const url = URL.createObjectURL(blob);
-  const a = Object.assign(document.createElement('a'),{href:url,download:'renewable_energy_survey_data.csv'});
+  const a = Object.assign(document.createElement('a'),
+                          {href:url,download:'renewable_energy_survey_data.csv'});
   document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
 }
 
@@ -354,7 +371,7 @@ function toggleDashboard(){
     renderDashboard();
     dash.addEventListener('mouseleave',e=>{
       if(e.clientX < window.innerWidth - dash.offsetWidth){
-        dash.classList.remove('open');
+        closeDashboard();
       }
     },{once:true});
   }
@@ -367,7 +384,6 @@ const freq = (arr,cats)=>{
   arr.forEach(v=>{if(o[v]!==undefined) o[v]++;});
   return cats.map(c=>o[c]);
 };
-function destroyCharts(){Object.keys(charts).forEach(k=>{charts[k].destroy();delete charts[k];});}
 
 /* ---------- Render dashboard ---------- */
 function renderDashboard(){
@@ -391,7 +407,7 @@ function renderDashboard(){
   const barrierCnt=Array(barrierOpts.length).fill(0);
   surveyData.forEach(d=>{
     (d.barriers||'').split('|').forEach(b=>{
-      const i=barrierOpts.indexOf(b); if(i>-1) barrierCnt[i]++
+      const i=barrierOpts.indexOf(b); if(i>-1) barrierCnt[i]++;
     });
     if(d.barriersOther) barrierCnt[barrierOpts.length-1]++;
   });
@@ -413,24 +429,32 @@ function renderDashboard(){
   const sizeCnt= freq(surveyData.map(d=>d.householdSize||''), sizeCats);
   const ownCnt = freq(surveyData.map(d=>d.ownership||''), ownCats);
 
-  destroyCharts();
+  /* Destroy old charts */
+  Object.keys(charts).forEach(k=>{charts[k].destroy();delete charts[k];});
 
   /* Demographic charts */
   charts.age=new Chart('ageChart',{type:'bar',
     data:{labels:ageCats,datasets:[{label:'Households',data:ageCnt}]},
     options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+
   charts.gender=new Chart('genderChart',{type:'pie',
     data:{labels:genCats,datasets:[{data:genCnt}]},
     options:{plugins:{legend:{position:'bottom'}}}});
+
   charts.income=new Chart('incomeChart',{type:'bar',
     data:{labels:incCats,datasets:[{label:'Households',data:incCnt}]},
-    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+    options:{indexAxis:'y',plugins:{legend:{display:false}},
+             scales:{x:{beginAtZero:true}}}});
+
   charts.edu=new Chart('eduChart',{type:'bar',
     data:{labels:eduCats,datasets:[{label:'Households',data:eduCnt}]},
-    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+    options:{indexAxis:'y',plugins:{legend:{display:false}},
+             scales:{x:{beginAtZero:true}}}});
+
   charts.size=new Chart('sizeChart',{type:'bar',
     data:{labels:sizeCats,datasets:[{label:'Households',data:sizeCnt}]},
     options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+
   charts.owner=new Chart('ownerChart',{type:'pie',
     data:{labels:ownCats,datasets:[{data:ownCnt}]},
     options:{plugins:{legend:{position:'bottom'}}}});
@@ -439,28 +463,35 @@ function renderDashboard(){
   charts.awareness=new Chart('awarenessChart',{type:'radar',
     data:{labels:awareL,datasets:[{label:'Average Awareness (1‑5)',data:awareV,fill:true}]},
     options:{scales:{r:{suggestedMin:0,suggestedMax:5,ticks:{stepSize:1}}}}});
+
   charts.adoption=new Chart('adoptionChart',{type:'pie',
     data:{labels:['Yes','No'],datasets:[{data:adoption}]},
     options:{plugins:{legend:{position:'bottom'}}}});
+
   charts.interruptions=new Chart('interruptionsChart',{type:'bar',
     data:{labels:cutCats,datasets:[{label:'Households',data:cuts}]},
     options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+
   charts.impact=new Chart('impactChart',{type:'radar',
     data:{labels:impactL,datasets:[{label:'Average Agreement (1‑5)',data:impactV,fill:true}]},
     options:{scales:{r:{suggestedMin:0,suggestedMax:5,ticks:{stepSize:1}}}}});
+
   charts.barriers=new Chart('barriersChart',{type:'bar',
     data:{labels:barrierOpts,datasets:[{label:'Mentions',data:barrierCnt}]},
-    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+    options:{indexAxis:'y',plugins:{legend:{display:false}},
+             scales:{x:{beginAtZero:true}}}});
 
   /* Qualitative list */
   const ql=document.getElementById('qualList'); ql.innerHTML='';
   surveyData.forEach((d,i)=>{
-    ['motivation','challenges','impactQoL','strategies','governmentActions'].forEach(q=>{
-      if(d[q]){
-        ql.insertAdjacentHTML('beforeend',
-          `<li><strong>Entry ${i+1} – ${q}:</strong><br>${d[q].replace(/\n/g,'<br>')}</li>`);
-      }
-    });
+    ['motivation','challenges','impactQoL','strategies','governmentActions']
+      .forEach(q=>{
+        if(d[q]){
+          ql.insertAdjacentHTML('beforeend',
+            `<li><strong>Entry ${i+1} – ${q}:</strong><br>${d[q]
+              .replace(/\n/g,'<br>')}</li>`);
+        }
+      });
   });
 }
 </script>
