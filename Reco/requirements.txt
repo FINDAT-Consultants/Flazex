@@ -1,0 +1,8 @@
+Flask
+gunicorn
+stripe
+requests
+pandas
+openai
+chardet
+python-dotenv
