@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exams & Certificates</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Cinzel:wght@600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      font-family:"Inter",Arial,sans-serif;
+      --clr-bg:#f6f8fa;
+      --clr-card:#fff;
+      --clr-accent:#0b60b6;
+      --radius:1rem;
+      --shadow:0 4px 16px rgba(0,0,0,.1)
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--clr-bg);
+      background-image:url(''); /* change to your image path */
+      background-size:cover;
+      background-attachment:fixed;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      padding:2rem;
+      overflow-y:auto;
+    }
+    /* ---------- EXAM CHOICE CARDS ---------- */
+    .card-container{
+      width:100%;
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:20px;
+    }
+    .card{
+      background:rgba(255,255,255,.6);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:var(--radius);
+      box-shadow:0 4px 8px rgba(0,0,0,.15);
+      padding:1.5rem;
+      text-align:center;
+      transition:box-shadow .25s;
+    }
+    .card:hover{box-shadow:0 8px 16px rgba(0,0,0,.25)}
+    .card-title{font-size:1.3rem;margin:0 0 .75rem}
+    .card-button{
+      background:#4caf50;
+      border:none;
+      color:#fff;
+      padding:.6rem 1.4rem;
+      font-size:1rem;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    /* ---------- EXAM FORM ---------- */
+    .exam-card{
+      display:none;                 /* hidden until an exam starts */
+      background:var(--clr-card);
+      border-radius:var(--radius);
+      padding:2rem;
+      width:min(100%,48rem);
+      margin:0 auto;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:1.5rem;
+    }
+    .question{font-size:1rem;font-weight:600}
+    label{display:flex;gap:.5rem;align-items:center;margin:.25rem 0}
+    .btn{
+      background:var(--clr-accent);
+      border:none;
+      color:#fff;
+      padding:.75rem 1.5rem;
+      font-size:1rem;
+      border-radius:var(--radius);
+      cursor:pointer;
+      align-self:start;
+      transition:background .25s;
+    }
+    .btn:hover{background:#094c93}
+    .result{font-size:1.25rem;font-weight:600}
+
+    /* ---------- CERTIFICATE SECTION ---------- */
+    #certificateWrapper{
+      display:none; /* shown after pass */
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:1.5rem;
+      width:100%;
+      padding:2rem 0;
+    }
+    .certificate{
+      background:#fff;
+      border:2px solid #111;
+      border-radius:10px;
+      padding:40px;
+      max-width:900px;
+      text-align:center;
+      position:relative;
+      background-image:radial-gradient(circle at 50% 50%,rgba(240,240,240,.6),transparent 90%);
+      box-shadow:0 8px 30px rgba(0,0,0,.12);
+    }
+    .logo{margin-bottom:20px}
+    .title{font-family:'Cinzel',serif;font-size:28px;font-weight:600;background:linear-gradient(to right,#b18c2e,#d4af37);-webkit-background-clip:text;color:transparent;letter-spacing:1.2px;margin-bottom:30px}
+    .name{font-family:'Cinzel',serif;font-size:24px;font-weight:600;margin:20px 0;letter-spacing:1px;border-bottom:2px solid #bfa97a;display:inline-block;padding:5px 40px}
+    .highlight{font-family:'Cinzel',serif;font-size:26px;font-weight:700;letter-spacing:1.5px;background:linear-gradient(to right,#990000,#cc0000);-webkit-background-clip:text;color:transparent;margin:20px 0}
+    .date{margin-top:20px;font-size:16px}
+    .signatures{display:flex;justify-content:space-around;margin-top:50px;font-size:14px}
+    .signature{text-align:center}
+    .seal-container{display:flex;justify-content:center;align-items:center;margin-top:50px;gap:50px}
+    .certificate-number{font-size:15px;font-family:'Montserrat',sans-serif;text-align:left;font-weight:500;border-left:2px solid #ccc;padding-left:20px}
+    img{border-radius:4px}
+    #downloadBtn{align-self:center;margin-top:1.5rem}
+    #resultsBtn{align-self:center;margin-top:1.5rem;background:#00838f}
+
+    @media print{
+      body *{visibility:hidden}
+      #certificateWrapper,#certificateWrapper *{visibility:visible}
+      #downloadBtn,#resultsBtn,.result{display:none!important}
+      #certificate{position:absolute;top:0;left:0;width:100%}
+    }
+  </style>
+</head>
+<body>
+  <!-- CHOICE PAGE -->
+  <div class="card-container" id="cards">
+    <div class="card">
+      <h2 class="card-title">MS Excel Exam</h2>
+      <p>Test your skills in MS Excel.</p>
+      <button class="card-button" onclick="startExam('MS Excel Exam')">Take Exam</button>
+    </div>
+    <!-- Add more exam cards here if desired -->
+  </div>
+
+  <!-- EXAM SECTION -->
+  <div class="exam-card" id="examCard"></div>
+
+  <!-- CERTIFICATE SECTION -->
+  <div id="certificateWrapper">
+    <div class="certificate" id="certificate">
+      <div class="logo"><img id="certLogo" src="image/garp_logo.png" alt="Logo" width="120"></div>
+      <div class="title">FORENSIC INSTITUTE OF DATA & TECHNOLOGY CONSULTANTS</div>
+      <p>The Board of Trustees certifies that</p>
+      <div class="name" id="certName">JOHN&nbsp;DOE</div>
+      <p>having demonstrated knowledge and proficiency to the Data Reconciliation Manager (DRM<sup>®</sup>) Committee and the Board of Trustees is granted the designation of</p>
+      <div class="highlight">DATA RECONCILIATION MANAGER</div>
+      <p>and is in good standing and entitled to all rights and privileges accorded this designation on this day of</p>
+      <div class="date" id="certDate">18&nbsp;/&nbsp;06&nbsp;/&nbsp;2025</div>
+      <div class="signatures">
+        <div class="signature">
+          <img src="Signatures/TIM.png" alt="Signature" height="40"><br>
+          <strong>SIMAUNDU&nbsp;CHIBBELA</strong><br>Chairman<br>Board of Trustees
+        </div>
+        <div class="signature">
+          <img src="Signatures/SIM.png" alt="Signature" height="40"><br>
+          <strong>SIMON&nbsp;JOHN&nbsp;MWANZA</strong><br>Chairman<br>DRM Committee
+        </div>
+        <div class="signature">
+          <img src="Signatures/JON.png" alt="Signature" height="40"><br>
+          <strong>JOHN&nbsp;MWANZA</strong><br>President & CEO
+        </div>
+      </div>
+      <div class="seal-container">
+        <div class="seal"><img src="image/Certified.png" alt="Certified Seal" width="100"></div>
+        <div class="certificate-number" id="certNumber"><strong>Certificate&nbsp;No:</strong><br> DRM-2025-0001</div>
+      </div>
+    </div>
+    <button class="btn" id="downloadBtn">Download Certificate&nbsp;PDF</button>
+    <button class="btn" id="resultsBtn">Download Results&nbsp;CSV</button>
+  </div>
+
+<script>
+/*****************************************
+ *              CONFIG                  *
+ *****************************************/
+const PASS_MARK = 70;          // percentage to pass
+const STORAGE_KEY = 'examResults';
+
+/*****************************************
+ *             STATE & DATA              *
+ *****************************************/
+let currentExam = '';
+const student = { name:'', email:'' };
+
+// Simple question set – can be replaced with server‑side fetch
+const questions = [
+  { q: 'Which function is used to calculate the average of a range in Excel?',                options:['=MEAN()','=AVERAGE()','=SUM()','=MEDIAN()'], answer:1 },
+  { q: 'What shortcut (Windows) adds a new worksheet?',                                        options:['Shift + F11','Ctrl + N','Alt + F2','Ctrl + Shift + S'], answer:0 },
+  { q: 'The VLOOKUP function searches for a value in the ____ column?',                        options:['First','Last','Selected','Any'], answer:0 },
+  { q: 'Which symbol is used to make a cell reference absolute in Excel formulas?',            options:['$','#','&','@'], answer:0 },
+  { q: 'What function returns the current date and time in Excel?',                            options:['=DATE()','=TIME()','=NOW()','=TODAY()'], answer:2 }
+];
+
+/*****************************************
+ *          EXAM NAVIGATION              *
+ *****************************************/
+function startExam(examName){
+  currentExam = examName;
+  if(!collectStudentDetails()) return;
+
+  document.getElementById('cards').style.display='none';
+  const examCard = document.getElementById('examCard');
+  examCard.style.display='flex';
+  renderExam();
+}
+
+function collectStudentDetails(){
+  student.name  = prompt('Enter your full name:','')?.trim();
+  student.email = prompt('Enter your email address:','')?.trim();
+  if(!student.name || !student.email){
+    alert('Both name and email are required.');
+    return false;
+  }
+  return true;
+}
+
+/*****************************************
+ *             RENDER EXAM               *
+ *****************************************/
+function renderExam(){
+  const examCard = document.getElementById('examCard');
+  examCard.innerHTML='';
+
+  const form = document.createElement('form');
+
+  questions.forEach((q,i)=>{
+    const fs = document.createElement('fieldset');
+    const lg = document.createElement('legend');
+    lg.className='question';
+    lg.textContent = `${i+1}. ${q.q}`;
+    fs.appendChild(lg);
+
+    q.options.forEach((opt,j)=>{
+      const lb = document.createElement('label');
+      const inp = document.createElement('input');
+      inp.type='radio';
+      inp.name=`q${i}`;
+      inp.value=j;
+      lb.appendChild(inp);
+      lb.append(opt);
+      fs.appendChild(lb);
+    });
+    form.appendChild(fs);
+  });
+
+  const btn = document.createElement('button');
+  btn.type='submit';
+  btn.className='btn';
+  btn.textContent='Submit Exam';
+  form.appendChild(btn);
+
+  form.addEventListener('submit',gradeExam);
+  examCard.appendChild(form);
+}
+
+/*****************************************
+ *             GRADE EXAM                *
+ *****************************************/
+function gradeExam(ev){
+  ev.preventDefault();
+  const fd = new FormData(ev.target);
+  // ensure all answered
+  for(let i=0;i<questions.length;i++){
+    if(fd.get(`q${i}`)===null){alert('Please answer all questions.');return;}
+  }
+  const score = questions.reduce((s,q,i)=>s + (+fd.get(`q${i}`) === q.answer),0);
+  const pct = (score/questions.length)*100;
+
+  const examCard = document.getElementById('examCard');
+  examCard.innerHTML='';
+  const p = document.createElement('p');
+  p.className='result';
+  p.textContent=`You scored ${pct.toFixed(0)}%.`;
+  examCard.appendChild(p);
+
+  // Save result to storage
+  const resultObj = {
+    date : new Date().toISOString().slice(0,10),
+    exam : currentExam,
+    name : student.name,
+    email: student.email,
+    score: pct.toFixed(0),
+    status: pct>=PASS_MARK ? 'Pass' : 'Fail'
+  };
+  saveResult(resultObj);
+
+  if(pct >= PASS_MARK){
+    examCard.append(' Congratulations!');
+    showCertificate();
+  }else{
+    examCard.append(` Unfortunately you did not reach the ${PASS_MARK}% pass mark.`);
+  }
+}
+
+/*****************************************
+ *         STORE & EXPORT RESULTS        *
+ *****************************************/
+function saveResult(res){
+  const arr = JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+  arr.push(res);
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(arr));
+}
+
+function exportCSV(){
+  const arr = JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+  if(!arr.length){alert('No results stored yet.');return;}
+  const header = Object.keys(arr[0]).join(',');
+  const rows = arr.map(o=>Object.values(o).map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','));
+  const csv = [header,...rows].join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url;
+  a.download='exam_results.csv';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+/*****************************************
+ *          CERTIFICATE LOGIC            *
+ *****************************************/
+function genNumber(){
+  const y = new Date().getFullYear();
+  const key = `certIndex-${y}`;
+  const n = (+(localStorage.getItem(key)||0))+1;
+  localStorage.setItem(key,n);
+  return `DRM-${y}-${n.toString().padStart(4,'0')}`;
+}
+function fmtDate(d){return `${String(d.getDate()).padStart(2,'0')} / ${String(d.getMonth()+1).padStart(2,'0')} / ${d.getFullYear()}`;}
+function fillCertificate(){
+  document.getElementById('certName').textContent = student.name.toUpperCase();
+  document.getElementById('certDate').textContent = fmtDate(new Date());
+  document.getElementById('certNumber').innerHTML = `<strong>Certificate No:</strong><br> ${genNumber()}`;
+}
+function showCertificate(){
+  fillCertificate();
+  document.getElementById('certificateWrapper').style.display='flex';
+  document.getElementById('certificateWrapper').scrollIntoView({behavior:'smooth'});
+}
+function downloadPDF(){
+  const w = document.getElementById('certificateWrapper');
+  window.scrollTo({top:w.offsetTop,behavior:'smooth'});
+  setTimeout(()=>window.print(),500);
+}
+
+/*****************************************
+ *               INIT                    *
+ *****************************************/
+window.addEventListener('load',()=>{
+  document.getElementById('downloadBtn').addEventListener('click',downloadPDF);
+  document.getElementById('resultsBtn').addEventListener('click',exportCSV);
+});
+</script>
+</body>
+</html>

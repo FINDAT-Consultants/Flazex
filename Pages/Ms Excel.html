@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MS Excel Exam</title>
+    <link rel="icon" type="image/png" href="2/favicon-32x32.png" sizes="400x400">
+    <style>
+        .hidden { display: none; }
+        .pass { color: green; }
+        .fail { color: red; }
+
+        /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+h2 {
+    color: #444;
+}
+
+/* Quiz Container */
+#quizContainer {
+    background: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+/* Questions and Options */
+.quizPage {
+    margin-bottom: 20px;
+}
+
+.quizPage input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Buttons */
+button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Result Display */
+#result {
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.pass {
+    color: green;
+}
+
+.fail {
+    color: red;
+}
+
+/* Timer */
+#timer {
+    font-size: 20px;
+    color: #444;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ... previous CSS styles ... */
+
+/* Button Container */
+#buttonContainer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+#buttonGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#buttonGroup button, 
+#buttonGroup #submitBtn {
+    background: #0c7d45;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#buttonGroup button:hover, 
+#buttonGroup #submitBtn:hover {
+    background: #f5ad06;
+}
+
+/* ... remaining CSS styles ... */
+
+
+
+/* ... previous CSS styles ... */
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ... remaining CSS styles ... */
+
+
+#studentDetailsContainer {
+            background: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+
+        #studentDetailsContainer input[type="text"],
+        #studentDetailsContainer input[type="email"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 90%;
+        }
+
+        #startExamBtn {
+            background: #28a745;
+            color: #fff;
+        }
+
+        #startExamBtn:hover {
+            background: #218838;
+        }
+
+        .hidden {
+    display: none;
+}
+
+/* ... rest of your CSS ... */
+
+
+        /* Existing styles... */
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('2/Glass.jpg'); /* Replace 'your-gif-image.gif' with the actual path to your GIF */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* This keeps the background fixed as you scroll */
+            /* Other background-related styles can be added here */
+        }
+
+        
+        /* Exam Title */
+h2#examTitle {
+    color: white; /* Change the color to white */
+}
+
+/* Timer */
+#timer {
+    font-size: 20px;
+    color: white; /* Change the color to white */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#clearDataBtn {
+    background: #dc3545; /* Red color for clear button */
+    color: #fff;
+    /* Rest of the styles can be similar to other buttons */
+}
+
+#clearDataBtn:hover {
+    background: #bd2130; /* Darker red on hover */
+}
+
+        
+    </style>
+</head>
+<body>
+
+    <button id="downloadCsvBtn">Download Report</button>
+    <button id="clearDataBtn">Clear Data</button>
+
+    <div id="studentDetailsContainer">
+        <h3>Enter Your Details</h3>
+        <input type="text" id="studentName" placeholder="Enter Your Name" required>
+        <input type="email" id="studentEmail" placeholder="Enter Your Email" required>
+        <button id="startExamBtn">Start Exam</button>
+    </div>
+
+    <h2 id="examTitle" class="hidden">Ms Excel Exam</h2>
+
+<div id="resultModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalText"></p>
+    </div>
+</div>
+
+<p id="timer" class="hidden"></p>
+
+<div id="quizContainer" class="hidden">
+    <!-- Question pages go here -->
+    <!-- Example Page 1 -->
+    <div class="quizPage" id="page1">
+        <p>1.How can you sum all numbers in a column from A1 to A10 in Microsoft Excel?</p>
+        <input type="radio" name="q1" value="A"> A) =SUM(A1:A10)<br>
+        <input type="radio" name="q1" value="B"> B)=TOTAL(A1:A10)<br>
+        <input type="radio" name="q1" value="C"> C)=ADD(A1:A10)<br>
+        <input type="radio" name="q1" value="D"> D)=COMBINE(A1:A10)<br>
+        <!-- More questions for page 1 -->
+    </div>
+   
+
+    <div id="buttonContainer">
+        <div id="buttonGroup">
+            <form id="quizForm">
+                <input type="submit" value="Submit" id="submitBtn">
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentDate = new Date().toDateString();
+            var studentName = ''; // Global variable to store the student's name
+            var studentEmail = ''; // Global variable to store the student's email
+            var startTime; // Start time for the timer
+            var timerInterval; // Interval for the timer
+        
+            // Define correct answers
+            var correctAnswers = {
+                q1: 'A',
+                // Add more questions and their correct answers here
+            };
+        
+            // Function to start the exam
+            document.getElementById('startExamBtn').onclick = function() {
+                studentName = document.getElementById('studentName').value;
+                studentEmail = document.getElementById('studentEmail').value;
+        
+                if (!studentName || !studentEmail) {
+                    alert('Please enter your name and email.');
+                    return;
+                }
+        
+                var storedData = localStorage.getItem('examData-' + studentName);
+                if (storedData) {
+                    storedData = JSON.parse(storedData);
+                    if (storedData.date === currentDate) {
+                        alert('You have already written the exam today. Please come back another day.');
+                        return;
+                    }
+                }
+        
+                document.getElementById('studentDetailsContainer').style.display = 'none';
+                document.getElementById('examTitle').classList.remove('hidden');
+                document.getElementById('timer').classList.remove('hidden');
+                document.getElementById('quizContainer').classList.remove('hidden');
+        
+                startTime = new Date();
+                timerInterval = setInterval(updateTimer, 1000);
+            };
+        
+            // Function to update the timer
+            function updateTimer() {
+                var currentTime = new Date();
+                var elapsed = new Date(currentTime - startTime);
+                var timeLeft = 60 * 60 - Math.floor(elapsed.getTime() / 1000);
+                var minutes = parseInt(timeLeft / 60, 10);
+                var seconds = parseInt(timeLeft % 60, 10);
+        
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+        
+                document.getElementById('timer').textContent = minutes + ":" + seconds;
+        
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                } else if (timeLeft == 600) {
+                    alert('Finalize your answers, the exam is closing soon!');
+                }
+            }
+        
+            // Function to handle quiz submission
+            function submitQuiz() {
+                clearInterval(timerInterval); // Stop the timer
+        
+                var endTime = new Date(); // End time for the timer
+                var timeTaken = new Date(endTime - startTime); // Total time taken
+                var minutesTaken = timeTaken.getUTCMinutes();
+                var secondsTaken = timeTaken.getUTCSeconds();
+        
+                // Calculate the score
+                var score = 0;
+                Object.keys(correctAnswers).forEach(function(question) {
+                    var selectedAnswer = document.querySelector('input[name="' + question + '"]:checked');
+                    if (selectedAnswer && selectedAnswer.value === correctAnswers[question]) {
+                        score++;
+                    }
+                });
+        
+                var totalQuestions = Object.keys(correctAnswers).length;
+                var scorePercent = (score / totalQuestions) * 100;
+                var passOrFail = scorePercent >= 50 ? "Pass" : "Fail";
+        
+                // Save the data in local storage
+                var examData = {
+                    date: currentDate,
+                    studentName: studentName,
+                    email: studentEmail,
+                    score: scorePercent.toFixed(2),
+                    passOrFail: passOrFail,
+                    timeTaken: minutesTaken + " minutes and " + secondsTaken + " seconds"
+                };
+        
+                localStorage.setItem('examData-' + studentName, JSON.stringify(examData));
+        
+                // Display result in the modal
+                var modalText = "Name: " + studentName + ", Email: " + studentEmail + ", Score: " + scorePercent.toFixed(2) + "% (" + passOrFail + "), " +
+                                "Time Taken: " + minutesTaken + " minutes and " + secondsTaken + " seconds";
+                document.getElementById("modalText").innerHTML = modalText;
+        
+                document.getElementById("resultModal").style.display = "block";
+                document.getElementById("quizContainer").style.display = 'none';
+            }
+        
+            document.getElementById('quizForm').onsubmit = function(event) {
+                event.preventDefault();
+                submitQuiz();
+            };
+        
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                var modal = document.getElementById("resultModal");
+                modal.style.display = "none";
+            };
+        });
+        </script>
+
+<script>
+    // ... [Include previous script here] ...
+    
+    // Function to download CSV file
+    function downloadCSV(csvContent, fileName) {
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", fileName);
+        document.body.appendChild(link); // Required for Firefox
+        link.click();
+    }
+    
+    document.getElementById('downloadCsvBtn').addEventListener('click', function() {
+    var password = prompt("Admin Password Required");
+
+    // Check if the entered password is correct
+    if (password === "Admin@123") { // Replace 'yourPasswordHere' with the actual password
+        // Existing CSV download code
+        var csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Date,Student Name,Email,Score,Pass/Fail,Time Taken\n";
+    
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key.startsWith('examData-')) {
+                var examData = JSON.parse(localStorage.getItem(key));
+                csvContent += examData.date + "," + examData.studentName + "," + 
+                              examData.email + "," + examData.score + "," + 
+                              examData.passOrFail + "," + examData.timeTaken + "\n";
+            }
+        }
+    
+        if (csvContent === "data:text/csv;charset=utf-8,Date,Student Name,Email,Score,Pass/Fail,Time Taken\n") {
+            alert("No data to download.");
+        } else {
+            downloadCSV(csvContent, "exam_data.csv");
+        }
+    } else {
+        alert("Incorrect password.");
+    }
+});
+
+    </script>
+
+
+<script>
+
+// ... [Include previous scripts here] ...
+
+// Function to clear local storage data
+function clearLocalStorageData() {
+    if (confirm('Are you sure you want to clear all exam data? This action cannot be undone.')) {
+        localStorage.clear();
+        alert('All data has been cleared.');
+    }
+}
+
+document.getElementById('clearDataBtn').addEventListener('click', function() {
+    var password = prompt("Admin Password Required");
+
+    // Check if the entered password is correct
+    if (password === "Admin@123") { // Replace 'yourPasswordHere' with the actual password
+        // Clear local storage data
+        if (confirm('Are you sure you want to clear all exam data? This action cannot be undone.')) {
+            localStorage.clear();
+            alert('All data has been cleared.');
+        }
+    } else {
+        alert("Incorrect password.");
+    }
+});
+
+
+
+</script>
+
+    
+        
+</body>
+</html>

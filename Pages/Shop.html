@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FINDAT Shop</title>
+<link rel="icon" type="image/png" href="2/favicon-32x32.png" sizes="400x400">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  header {
+    background-color: #00d5a3;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  section {
+    margin-bottom: 20px;
+  }
+
+
+
+  .game {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 10px;
+    padding: 10px;
+    width: calc(25% - 20px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  .game:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .game img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .game h3 {
+    margin-top: 10px;
+    color: #120f0f;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .game p {
+    color: #080606;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .game-list {
+      flex-direction: column;
+    }
+
+    .game {
+      width: 90%;
+      margin: 10px auto;
+    }
+  }
+
+
+
+/* Updated styles for game list and cards */
+.game-list {
+  display: flex; /* Use flexbox for horizontal layout */
+  flex-wrap: nowrap; /* Prevent wrapping of items */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 20px; /* Spacing between cards */
+}
+
+.game {
+  flex: 0 0 auto; /* Do not grow, do not shrink, and base size on content */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 10px;
+  padding: 10px;
+  width: 200px; /* Fixed width for each card */
+  /* Other styles remain the same */
+}
+
+.game img {
+  width: 100%; /* Ensure images resize to fit the card */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  /* Other styles remain the same */
+}
+
+
+.Software-list {
+  display: flex; /* Use flexbox for horizontal layout */
+  flex-wrap: nowrap; /* Prevent wrapping of items */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 20px; /* Spacing between cards */
+}
+
+.game {
+  flex: 0 0 auto; /* Do not grow, do not shrink, and base size on content */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 10px;
+  padding: 10px;
+  width: 200px; /* Fixed width for each card */
+  /* Other styles remain the same */
+}
+
+@media (max-width: 768px) {
+  .Software-list {
+    flex-direction: column; /* Stack cards vertically on smaller screens */
+  }
+
+  .game {
+    width: 90%; /* Adjust width for mobile devices */
+    margin: 10px auto;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Products Available</h1>
+</header>
+
+<main>
+  <section id="best-selling-games">
+    <h2>Selling & Installing Software</h2>
+    <div class="Software-list">
+      
+        <div class="game">
+            <img src="2/Power Bi.png" alt="Power Bi">
+            <h3>Power Bi</h3>
+            <p>K1,500.00</p>
+          </div>
+      
+      
+        <!-- Repeat this block for each game -->
+      <div class="game">
+        <img src="2/tableau-logo.jpg" alt="Tableau">
+        <h3>Tableau</h3>
+        <p>K1,500.00</p>
+      </div>
+
+         
+
+          <!-- Repeat this block for each game -->
+          <div class="game">
+            <img src="2/SQLL.png" alt="SQL">
+            <h3>SQL</h3>
+            <p>K1,500.00</p>
+          </div>
+    
+           <!-- Repeat this block for each game -->
+           <div class="game">
+            <img src="2/R.png" alt="R - Studio">
+            <h3>R - Studio</h3>
+            <p>K1,500.00</p>
+          </div>
+
+           <!-- Repeat this block for each game -->
+           <div class="game">
+            <img src="2/Python-Symbol.png" alt="Python">
+            <h3>Python</h3>
+            <p>K1,500.00</p>
+          </div>
+
+             <!-- Repeat this block for each game -->
+             <div class="game">
+                <img src="2/AccessData-FTK__48816.webp" alt="FTK">
+                <h3>FTK - Forensic Toolkit</h3>
+                <p>K1,500.00</p>
+              </div>
+
+     <!-- Repeat this block for each game -->
+             <div class="game">
+              <img src="2/Aut.jpg" alt="AUTOPSY">
+              <h3>Autopsy - Digital Forensics</h3>
+              <p>K1,500.00</p>
+            </div>
+    
+       <!-- Repeat this block for each game -->
+       <div class="game">
+        <img src="2/SPSS_logo.svg" alt="SPSS">
+        <h3>SPSS</h3>
+        <p>K1,500.00</p>
+      </div>
+    
+      <!-- Add more blocks as needed -->
+    </div>
+  </section>
+</main>
+
+<footer>
+    <p>&copy; 2023 FINDAT Consultants. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Instructions</title>
+<link rel="icon" type="image/png" href="2/favicon-32x32.png" sizes="400x400">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: url('2/Glass.jpg'); /* Add a background image for better effect */
+    background-size: cover;
+    color: #020202;
+}
+
+.payment-instructions {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1); /* Almost clear background */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.payment-methods {
+    list-style-type: none;
+    padding: 0;
+}
+
+.payment-methods li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1); /* Almost clear background */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note {
+    font-style: italic;
+    background-color: rgba(247, 247, 247, 0.1); /* Almost clear background */
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="payment-instructions">
+  <h2>Payment Instructions</h2>
+  <p>Please use the following payment methods when settling your invoices for our services:</p>
+
+    
+    <li><strong>Mobile Payment:</strong> Payments can be made into mobile money account.
+      <ul>
+        <li>Network Provider: Airtel</li>
+        <li>Mobile Number: +260976913843</li>
+        <li>Country: Zambia</li>
+      </ul>
+    </li>
+</ul>
+
+  </ul>
+  <div class="note">
+    <strong>Note:</strong> Our services will be provided only after the funds have cleared in our account.
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const paymentMethods = document.querySelectorAll('.payment-methods li');
+
+    paymentMethods.forEach(method => {
+        method.addEventListener('mouseover', function () {
+            this.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+            this.style.cursor = 'pointer';
+        });
+
+        method.addEventListener('mouseout', function () {
+            this.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        });
+    });
+});
+
+</script>
+
+</body>
+</html>

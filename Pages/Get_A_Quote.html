@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote</title>
+    <link rel="icon" type="image/png" href="2/favicon-32x32.png" sizes="400x400">
+    <style>
+      /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eef2f3; /* Light background for contrast */
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Glassmorphism Style */
+#get-a-quote {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Blurry effect */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+#get-a-quote h2 {
+    color: #0cc5a6; /* A shade of blue for headings */
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="tel"],
+.input-group input[type="date"],
+.input-group select,
+.input-group textarea {
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd; /* Light grey border */
+}
+
+.input-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Button Style */
+button[type="submit"] {
+    background-color: #0cc5a6; /* Blue shade */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0b5ed7; /* Slightly darker blue */
+}
+
+/* Footer Styles */
+.footer {
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer .social-links a {
+    color: white;
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+
+
+/* Social Links Styles */
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Space above the links */
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px; /* Spacing between icons */
+    color: #0d6efd; /* Blue color for icons */
+    font-size: 24px; /* Icon size */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.social-links a:hover {
+    color: #0b5ed7; /* Slightly darker blue on hover */
+}
+
+/* Icon Styles */
+/* Assuming you're using Font Awesome Icons */
+.fab {
+    cursor: pointer;
+}
+
+/* If you have specific styles for each social media platform */
+.social-links a.facebook { color: #3b5998; } /* Facebook Blue */
+.social-links a.instagram { color: #e4405f; } /* Instagram Pink */
+.social-links a.linkedin { color: #0077b5; } /* LinkedIn Blue */
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .social-links a {
+        font-size: 20px; /* Slightly smaller icons on small screens */
+    }
+}
+
+
+html, body {
+    height: 100%; /* Full height for the body */
+    margin: 0; /* Remove default margin */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+.container {
+    flex: 1; /* Allows container to expand and push the footer down */
+}
+
+.footer {
+    /* Your existing footer styles */
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    /* Add more styling as needed */
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: flex-end; /* Aligns content to the right */
+    padding: 10px 20px; /* Add some padding around */
+    background-color: #ffffff00; /* Optional: Background color for the header */
+}
+
+.logo-container img {
+    height: 150px; /* Adjust the size of your logo */
+    width: auto; /* Maintain aspect ratio */
+}
+
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <img src="1/LOGO.png" alt="Company Logo" /> <!-- Replace with your logo path -->
+        </div>
+    </header>
+
+<section id="get-a-quote">
+    <div class="container">
+        <h2>Get a Quote</h2>
+        <form action="/submit-quote" method="post">
+            <fieldset>
+                <legend>Send me a price quotation for the following service/s:</legend>
+                <label><input type="checkbox" name="services" value="data_visualization">Data visualization</label>
+                <label><input type="checkbox" name="services" value="reporting"> Reporting </label>
+                <label><input type="checkbox" name="services" value="data_examination">Data Examination</label>
+                <label><input type="checkbox" name="services" value="technology">Technology</label>
+                <label><input type="checkbox" name="services" value="other">Other</label>
+            </fieldset>
+            
+            <div class="input-group">
+                <label for="company-name">Company/ Brand Name *</label>
+                <input type="text" id="company-name" name="company_name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="project-description">Project Description *</label>
+                <textarea id="project-description" name="project_description" required></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="project-due-date">Estimated project due date:</label>
+                <input type="date" id="project-due-date" name="project_due_date">
+            </div>
+
+            <fieldset>
+                <legend>Contact Person</legend>
+                <div class="input-group">
+                    <label for="title">Title *</label>
+                    <select id="title" name="title" required>
+                        <option value="">-Select-</option>
+                        <option value="mr">Mr</option>
+                        <option value="ms">Ms</option>
+                        <option value="mrs">Mrs</option>
+                        <option value="dr">Dr</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full_name">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="input-group">
+                    <label for="address">Address *</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+            </fieldset>
+
+            <button type="submit">Request Quote</button>
+        </form>
+    </div>
+</section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+        <div class="social-links">
+            <a href="https://www.facebook.com//simonjohn.mwanza" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/findat_consultants/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/92780932/admin/feed/posts/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <!-- Add other social media links here -->
+        </div>
+        <p>&copy; <span id="currentYear"></span> FINDAT Consultants. All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('get-a-quote').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the default form submission
+
+            var services = Array.from(document.querySelectorAll('#get-a-quote input[type="checkbox"]:checked')).map(function(checkbox) {
+                return checkbox.value;
+            }).join(", ");
+
+            var companyName = encodeURIComponent(document.getElementById('company-name').value);
+            var projectDescription = encodeURIComponent(document.getElementById('project-description').value);
+            var projectDueDate = encodeURIComponent(document.getElementById('project-due-date').value);
+            var title = encodeURIComponent(document.getElementById('title').value);
+            var fullName = encodeURIComponent(document.getElementById('full-name').value);
+            var email = encodeURIComponent(document.getElementById('email').value);
+            var phone = encodeURIComponent(document.getElementById('phone').value);
+            var address = encodeURIComponent(document.getElementById('address').value);
+
+            var message = `Hello, I would like to request a quote. Here are the details:%0ARequested Services: ${services}%0ACompany/Brand Name: ${companyName}%0AProject Description: ${projectDescription}%0AProject Due Date: ${projectDueDate}%0AContact Person Title: ${title}%0AFull Name: ${fullName}%0AEmail: ${email}%0APhone: ${phone}%0AAddress: ${address}`;
+
+            var whatsappUrl = `https://wa.me/+260976913843?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    });
+</script>
+
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+    
+</body>
+</html>

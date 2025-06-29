@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<head>
+    <title>Consultants</title> <!-- Add this line to set the page title to "Tutors" -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="2/favicon-32x32.png" sizes="400x400">
+</head>
+
+<style>
+    .tutor-card {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 10px;
+        margin: 10px;
+        cursor: pointer;
+        display: inline-block;
+        width: 300px; /* Fixed width */
+        height: 420px; /* Fixed height for uniform card size */
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        color: white; /* Set text color to white */
+        overflow: hidden; /* Ensures content that overflows the set dimensions is not visible */
+        display: flex; /* Use flexbox for layout */
+        flex-direction: column; /* Stack children vertically */
+        align-items: center; /* Center-align children horizontally */
+        justify-content: center; /* Center-align children vertically */
+    }
+
+    .tutor-photo {
+        width: 100%; /* Ensures the photo fills the width of the card */
+        height: 200px; /* Fixed height for uniform photo size */
+        object-fit: cover; /* Ensures the photo covers the set area, cropping as necessary */
+    }
+
+    .tutor-info {
+        text-align: center; /* Center-align text */
+        display: flex; /* Use flexbox for layout */
+        flex-direction: column; /* Stack children vertically */
+        align-items: center; /* Center-align items horizontally */
+        justify-content: center; /* Center-align items vertically */
+        width: 100%; /* Ensure .tutor-info fills the width of the parent */
+    }
+
+    .italic-text {
+        font-style: italic;
+        color: white; /* Set text color to white */
+    }
+
+    .contact-button {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 5px;
+        background-color: #1ba893; /* Green background for better visibility */
+        color: white; /* White text */
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+        text-align: center;
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+
+    .contact-button:hover {
+        background-color: #7c1e1e; /* Darker shade on hover */
+    }
+
+    .contact-button i {
+        margin-right: 5px; /* Space between icon and text */
+    }
+
+
+#video-background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+    z-index: -100; /* Place behind everything */
+}
+
+iframe {
+    width: 100vw;
+    height: 100vh;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+/* Rest of your CSS */
+
+#background-gif {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+    z-index: -100; /* Place behind everything */
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars if the GIF is larger than the screen */
+}
+
+/* Rest of your CSS */
+
+.tutor-card {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 10px;
+        margin: 10px;
+        cursor: pointer;
+        display: inline-block;
+        width: 300px;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        color: white; /* Set text color to white */
+    }
+
+    .italic-text {
+        font-style: italic;
+        color: white; /* Set text color to white */
+    }
+
+    /* Rest of your CSS remains the same */
+
+    .tutor-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Adjust this as needed */
+    padding: 20px; /* Adds some spacing around the container */
+}
+
+.tutor-card {
+    margin: 10px; /* Ensure there's space between cards */
+    /* Other styles remain unchanged */
+}
+
+/* Adjust body and html styles if necessary */
+body, html {
+    height: auto; /* Change this to auto if you had it as 100% */
+    overflow-x: hidden; /* Hide horizontal scroll */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+
+
+</style>
+<body>
+    <img src="2/tenor.gif" alt="Background GIF" id="background-gif">
+
+
+    <div class="tutor-card">
+        <img src="2/DSC_0322.png" alt="Tutor Photo" class="tutor-photo">
+        <div class="tutor-info">
+            <h3>John Mwanza - CEO</h3>
+            <p><span class="italic-text">Management & Financial Advisory</span></p>
+            <a href="tel:+260967669184" class="contact-button"><i class="fas fa-phone-alt"></i> Call</a>
+            <a href="mailto:Johnmwanza69@gmail.com" class="contact-button"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </div>
+    
+
+    <div class="tutor-card">
+        <img src="2/DSC_0324.png" alt="Tutor Photo" class="tutor-photo">
+        <div class="tutor-info">
+            <h3>Timothy Chibbela - COO</h3>
+            <p><span class="italic-text">Economy & Project Advisory</span></p>
+            <a href="tel:+260766809889" class="contact-button"><i class="fas fa-phone-alt"></i> Call</a>
+            <a href="mailto:Schibbela@yahoo.com" class="contact-button"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </div>
+    
+
+
+<div class="tutor-card" onclick="window.location.href='https://portfolio-simon-john.netlify.app/';">
+    <img src="2/DSC_0323.png" alt="Tutor Photo" class="tutor-photo">
+    <div class="tutor-info">
+        <h3>Simon John - CDO</h3>
+        <p><span class="italic-text">FinTech & Forensic Advisory</span></p>
+        <a href="tel:+260976913843" class="contact-button"><i class="fas fa-phone-alt"></i> Call</a>
+        <a href="mailto:Simonjohnmwanza@gmail.com" class="contact-button"><i class="fas fa-envelope"></i> Email</a>
+        <p><span class="italic-text">(click to view portfolio)</span></p>
+    </div>
+</div>
+
+
+<div class="tutor-card">
+    <img src="2/DSC_0325.png" alt="Tutor Photo" class="tutor-photo">
+    <div class="tutor-info">
+        <h3>Dr. Mustafa Mafunde - MD</h3>
+        <p><span class="italic-text">Public & Health Care Advisory</span></p>
+        <a href="tel:+260976566465" class="contact-button"><i class="fas fa-phone-alt"></i> Call</a>
+        <a href="mailto:mafundemustafa7@gmail.com" class="contact-button"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+</div>
+
+
+<div class="tutor-card">
+    <img src="2/DSC_0326.png" alt="Tutor Photo" class="tutor-photo">
+    <div class="tutor-info">
+        <h3>Esther John - EA</h3>
+        <p><span class="italic-text">Assurance & Audit Advisory</span></p>
+        <a href="tel:+260978137007" class="contact-button"><i class="fas fa-phone-alt"></i> Call</a>
+        <a href="mailto:estherjohnbee@gmail.com" class="contact-button"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+</div>
+
+</body>
+</html>
