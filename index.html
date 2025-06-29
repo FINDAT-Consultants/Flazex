@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
+
+  <title>FINDAT Consultants - Home</title>
+
+  <!-- External Styles/Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+
+  <!-- Smooth Scroll script -->
+  <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Favicon/favicon-32x32.png" sizes="400x400" />
+
+  <!-- Optional stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* =============== RESET & GENERAL =============== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* =============== PRELOADER =============== */
+    #preloader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #fff url("images/preloader.gif") no-repeat center;
+      z-index: 999;
+      left: 0;
+      top: 0;
+    }
+
+    /* 
+    =================================================
+    FIRST HEADER WITH DROPDOWNS & SEARCH
+    =================================================
+    */
+    .first-header {
+      position: relative;
+      z-index: 9999;
+      background: linear-gradient(135deg, #0c0b68ee, #000000);
+      color: #ffffff;
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-bottom: 2px solid #3e3a7c;
+    }
+
+    .first-header .header-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+    }
+
+    .first-header .header-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9em;
+      padding: 6px 8px;
+      border-radius: 4px;
+    }
+    .first-header .header-menu a:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    /* ========== DROPDOWNS ========== */
+    .first-header .dropdown {
+      position: relative;
+    }
+    .first-header .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 600px;
+      background-color: #f5f5f5;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 10px;
+      z-index: 99999;
+    }
+    .first-header .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Multi-column "CRA" example */
+    .dropdown-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .dropdown-container {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .dropdown-left {
+      background-color: #1e1e1e;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1;
+    }
+    .dropdown-left h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .dropdown-left h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .dropdown-left p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .dropdown-left .register-button {
+      background-color: #6a4bc2;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .dropdown-left .register-button:hover {
+      background-color: #8a69e3;
+    }
+
+    .dropdown-middle,
+    .dropdown-right {
+      flex: 1;
+      padding: 20px;
+    }
+    .dropdown-middle h3,
+    .dropdown-right h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+    .dropdown-middle ul,
+    .dropdown-right ul {
+      list-style: none;
+      padding: 0;
+    }
+    .dropdown-middle ul li,
+    .dropdown-right ul li {
+      margin-bottom: 10px;
+    }
+    .dropdown-middle ul li a,
+    .dropdown-right ul li a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s ease;
+      font-size: 0.95rem;
+    }
+    .dropdown-middle ul li a:hover,
+    .dropdown-right ul li a:hover {
+      color: #6a4bc2;
+    }
+
+    .candidate-guide {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .candidate-guide img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .candidate-guide p {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .candidate-guide .download-link {
+      color: #6a4bc2;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .candidate-guide .download-link:hover {
+      text-decoration: underline;
+    }
+
+    .dropdown-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .header-search {
+      position: relative;
+    }
+    .header-search input {
+      padding: 6px 10px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      width: 140px;
+      transition: width 0.3s ease;
+    }
+    .header-search input:focus {
+      width: 200px;
+    }
+    .header-search i {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #000;
+      cursor: pointer;
+    }
+
+    /*
+    ===========================================================
+    SECOND HEADER (PHONE, ETC.) - LOWER Z-INDEX
+    ===========================================================
+    */
+    .second-header {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, #0c0b68ee, #000000);
+      color: #ffffff;
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-bottom: 2px solid #3e3a7c;
+    }
+
+    .second-header .header-top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-left: 10px;
+    }
+    .second-header .header-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .second-header .header-top-list {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .second-header .header-top-item {
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+    }
+    .second-header .header-top-item p,
+    .second-header .header-top-item a {
+      margin-left: 5px;
+      color: #fff;
+      font-size: 0.8em;
+    }
+
+    /* =============== SIDENAV & HAMBURGER =============== */
+    #manuBtn {
+      display: block;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    #manuBtn img {
+      width: 30px;
+      height: auto;
+    }
+
+    /*
+     * UPDATED Sidenav styles:
+     * Full-screen from left, bigger fonts, close icon inside
+     */
+    #sideNav {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      left: -100%;
+      top: 0;
+      background: #111;
+      transition: 0.5s;
+      padding-top: 60px;
+      z-index: 9999;
+    }
+    #sideNav .close-button {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    #sideNav nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    #sideNav nav ul li {
+      font-size: 1.2rem;
+      padding: 15px 20px;
+      margin: 10px 0;
+      line-height: 1.4;
+      display: block;
+    }
+    #sideNav nav ul li a {
+      color: #faf0f0;
+      text-decoration: none;
+    }
+    #sideNav nav ul li a:hover {
+      color: #FF5733;
+    }
+
+    /* =============== DEVELOPMENTS SECTION =============== */
+    #developments {
+      padding: 10px;
+      background-color: #f5f5f5;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      margin: 20px auto;
+      max-width: 1000px;
+    }
+    #developments .developments-header h2 {
+      font-size: 0.9em;
+      text-align: left;
+      margin-bottom: 8px;
+      padding-bottom: 3px;
+      border-bottom: 2px solid #FF5733;
+      color: #333;
+    }
+    #developments .intro-text {
+      font-size: 0.75em;
+      color: #666;
+      margin: 5px 0 12px 0;
+      line-height: 1.3;
+    }
+    .development-item {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 6px;
+      margin-bottom: 8px;
+      background-color: #ffffff;
+      transition: box-shadow 0.3s ease;
+    }
+    .development-item:hover {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .development-item h3 {
+      font-size: 0.85em;
+      color: #333;
+      margin: 0 0 3px;
+      font-weight: bold;
+      border-bottom: 1px solid #FF5733;
+      padding-bottom: 2px;
+    }
+    .development-item p {
+      font-size: 0.7em;
+      color: #555;
+      margin: 4px 0 0 0;
+      line-height: 1.2;
+    }
+
+    /* =============== FEATURES SECTION =============== */
+    #feature {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+    }
+    #feature .title-text {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #feature .title-text p {
+      font-size: 0.9em;
+      color: #888;
+    }
+    #feature .title-text h1 {
+      font-size: 1.5em;
+      margin-top: 5px;
+    }
+    /* The parent container holding text and slider side by side */
+    .feature-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 0 10px;
+    }
+    /* Left side features/text */
+    .features {
+      flex: 1;
+      min-width: 280px;
+      margin-right: 10px;
+    }
+    .features h1 {
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+    .features-desc {
+      display: flex;
+      align-items: flex-start;
+      margin: 10px 0;
+    }
+    .feature-icon {
+      margin-right: 10px;
+      font-size: 1.5em;
+      color: #FF5733;
+    }
+    .feature-text p {
+      font-size: 0.9em;
+      line-height: 1.4;
+    }
+
+    /* Right side slider */
+    .feature-slider {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 300px;
+    }
+    .feature-slider img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* =============== CLIENTS SECTION =============== */
+    #clients {
+      margin-top: 20px;
+      text-align: center;
+    }
+    #clients h2 {
+      margin-bottom: 10px;
+    }
+    .client-logos-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .client-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .client-logos img {
+      width: 100px;
+      height: auto;
+      flex-shrink: 0;
+      margin: 0 10px;
+      filter: brightness(0.3) contrast(1.2);
+      transition: filter 0.3s ease;
+    }
+    .client-logos img:hover {
+      filter: none;
+    }
+
+    /* =============== SERVICE SECTION =============== */
+    #service {
+      margin: 20px auto;
+      max-width: 100%;
+      background: url("images/service-landscape.jpg") no-repeat center center;
+      background-size: cover;
+      color: #fff;
+      position: relative;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    #service .title-text p,
+    #service .title-text h1 {
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+    .service-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    /* =============== MODAL (READ MORE, ETC.) =============== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background: rgba(0, 0, 0, 0.6);
+      color: #ffffff;
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 500px;
+      margin: 100px auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .modal-content h2 {
+      margin-bottom: 10px;
+    }
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* =============== FOOTER =============== */
+    .footer {
+      background-color: #212121;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .footer .social-links a {
+      color: #fff;
+      margin: 0 5px;
+    }
+    .footer p {
+      font-size: 0.8em;
+      margin-top: 5px;
+    }
+
+    .first-header .dropdown-content a {
+      color: #000 !important;
+    }
+    .first-header .dropdown-content ul li a {
+      color: #000 !important;
+    }
+    .first-header .dropdown-middle h3,
+    .first-header .dropdown-right h3 {
+      color: #000 !important;
+    }
+    .candidate-guide p {
+      color: #000 !important;
+    }
+
+    .aboutus-dropdown .dropdown-content {
+      width: 60px;
+      left: auto;
+      right: 0;
+      padding: 10px;
+      font-size: 0.9em;
+      text-align: left;
+    }
+    .aboutus-dropdown .dropdown-left h2 {
+      font-size: 1.75rem;
+      margin-bottom: 7px;
+    }
+    .aboutus-dropdown .dropdown-left h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .aboutus-dropdown .dropdown-left p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 7px;
+      text-align: left;
+    }
+    .aboutus-dropdown .dropdown-left {
+      text-align: left;
+      margin: 0;
+    }
+
+    /* ===== CONSULTANT MODAL STYLES ===== */
+    .close-consultant {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    #consultantForm input,
+    #consultantForm select,
+    #consultantForm textarea {
+      display: block;
+      width: 90%;
+      margin: 10px auto;
+      padding: 8px;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+    }
+    #consultantForm button[type="submit"] {
+      display: block;
+      margin: 20px auto 0;
+      background-color: #6a4bc2;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #consultantForm button[type="submit"]:hover {
+      background-color: #8a69e3;
+    }
+
+    /* =============== NEW FINDAT COMMITMENT SECTION =============== */
+    #commitment-section {
+      padding: 40px 20px;
+      background-color: #ffffff;
+      color: #333;
+      margin-top: 20px;
+    }
+    .commitment-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .commitment-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 30px;
+      justify-content: space-between;
+    }
+    .commitment-card {
+      flex: 1 1 calc(33.333% - 20px);
+      min-width: 200px;
+      text-align: center;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .commitment-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .commitment-card h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #6a4bc2;
+    }
+    .commitment-info {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .commitment-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+      justify-content: flex-start;
+    }
+    .commitment-stat {
+      flex: 1 1 200px;
+      background-color: #fafafa;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .commitment-stat h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #6a4bc2;
+    }
+    .commitment-stat p {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.4;
+    }
+    /* The animated count text */
+    .count {
+      font-weight: bold;
+    }
+
+    /* ============ MAIN BANNER SECTION (SLIDESHOW) ============ */
+    .main-banner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #2d1a7d, #000);
+      color: #fff;
+      padding: 60px 0;
+      overflow: hidden;
+    }
+    .main-banner .banner-content {
+      width: 50%;
+      margin-left: 5%;
+    }
+    .main-banner .global-title {
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      color: #aaa;
+    }
+    .main-banner .banner-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .main-banner .banner-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #d1d1d1;
+    }
+    .main-banner .cta-button {
+      display: inline-block;
+      background-color: #6a4bc2;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .main-banner .cta-button:hover {
+      background-color: #8a69e3;
+    }
+    .main-banner .banner-slideshow {
+      width: 45%;
+      margin-right: 5%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    #slideshow-image {
+      width: 500px;
+      height: auto;
+      border-radius: 10px;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.8s ease;
+      opacity: 1;
+    }
+    .status-wrapper {
+      position: absolute;
+      top: 10px;
+      left: 5%;
+      right: 5%;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      z-index: 999;
+    }
+    .status-bar {
+      flex: 1;
+      background: rgba(255,255,255,0.3);
+      height: 4px;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .status-bar-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: #fff;
+      transition: width linear;
+    }
+
+    /*
+       =========== LATEST INSIGHTS SECTION WITH GIF BACKGROUND ===========
+       We wrapped content in .insights-content (glassy overlay).
+    */
+    #latest-insights {
+      position: relative;
+      margin: 0 auto;
+      max-width: 1300px;
+
+      /* Padding around the entire section */
+      padding: 100px 20;
+
+      /* GIF background => replace with your actual file path if needed */
+      background: url("images/Lib.gif") center center/cover no-repeat;
+    }
+    .insights-content {
+      margin: 0 auto;
+      padding: 10px 10px;
+      border-radius: 12px;
+
+      /* Glassy overlay effect */
+      background: rgba(255, 255, 255, 0.014);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0);
+      color: #f7f4f4;
+    }
+
+    /* The grid: no overflow-x, we will handle with pagination */
+    .insights-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center; /* center them nicely */
+    }
+
+    /* Card styling + hover animation */
+    .insight-card {
+      flex: 0 0 calc(300px); /* fixed card width */
+      border-radius: 12px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      color: #333;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: none; /* hidden by default, we'll show in JS based on page */
+    }
+    .insight-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 16px rgba(0,0,0,0.15);
+    }
+
+    .insight-card iframe {
+      border-radius: 8px;
+      width: 100%;
+      border: none;
+    }
+    .insight-info {
+      padding: 10px 0;
+    }
+    .insight-date {
+      display: block;
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .insight-title {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      font-weight: bold;
+      color: #333;
+    }
+    .insight-desc {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    /* Pagination area */
+    .insights-pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .insights-pagination button {
+      background: #6a4bc2;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      margin: 0 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .insights-pagination button:hover {
+      background: #8a69e3;
+    }
+    .insights-pagination .disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+    .insights-pagination span {
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    /* Highlight style for search results */
+    .search-highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+
+    /* 
+       ============================================
+       ADD RESPONSIVE MEDIA QUERIES BELOW
+       ============================================
+    */
+    @media (max-width: 768px) {
+
+      /* Make top headers vertical */
+      .first-header,
+      .second-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .first-header .header-menu {
+        flex-wrap: wrap;
+      }
+
+      /* Drop the container's max width for small screens */
+      .container {
+        max-width: 100%;
+        padding: 0 15px;
+      }
+
+      /* Dropdown contents: let them stack vertically */
+      .first-header .dropdown-content {
+        width: 100% !important;
+      }
+      .dropdown-container {
+        flex-direction: column;
+      }
+      .dropdown-left,
+      .dropdown-middle,
+      .dropdown-right {
+        flex: unset;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      /* Second header content: stack & center */
+      .second-header .header-top {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .second-header .header-content {
+        flex-direction: column;
+      }
+
+      /* Main banner: stack text & slideshow vertically */
+      .main-banner {
+        flex-direction: column;
+        padding: 40px 10px;
+      }
+      .main-banner .banner-content,
+      .main-banner .banner-slideshow {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+      }
+      /* Slideshow image smaller on mobile */
+      .main-banner .banner-slideshow img {
+        width: 90%;
+        max-width: 400px;
+      }
+
+      /* Developments: no fixed max-width smaller than screen */
+      #developments {
+        max-width: 95%;
+        margin: 20px auto;
+      }
+
+      /* Feature section: stack text & slider */
+      .feature-box {
+        flex-direction: column;
+        padding: 0;
+      }
+      .features,
+      .feature-slider {
+        margin-right: 0;
+        min-width: auto;
+        width: 100%;
+      }
+      .features {
+        margin-bottom: 20px;
+      }
+
+      /* Clients section: make logos smaller or wrap */
+      .client-logos img {
+        width: 80px;
+        margin: 5px;
+      }
+
+      /* Commitment cards: single-column or 2-column layout */
+      .commitment-cards {
+        flex-direction: column;
+      }
+      .commitment-card {
+        flex: 1 1 100%;
+        margin: 0 auto;
+        max-width: 300px;
+      }
+      .commitment-stats {
+        flex-direction: column;
+        align-items: center;
+      }
+      .commitment-stat {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      /* Insights layout: each card 100% wide if you want. 
+         For now, just let them break into rows. */
+      .insight-card {
+        flex: 0 0 100%;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- FIRST HEADER (HOVER DROPDOWNS, HIGH Z-INDEX) -->
+<header class="header first-header">
+  <nav class="header-menu">
+
+    <!-- Consultancy Services -->
+    <div class="dropdown">
+      <a href="#">Consultancy Services <i class="fas fa-caret-down"></i></a>
+      <div class="dropdown-content" style="width: 800px;">
+        <div class="dropdown-section">
+          <div class="dropdown-container">
+            <!-- Left panel -->
+            <div class="dropdown-left">
+              <h2>Consultancy Services</h2>
+              <h3>Comprehensive Advisory</h3>
+              <p>
+                Get specialized guidance and proven methodologies 
+                to help your organization excel.
+              </p>
+            </div>
+            <!-- Middle panel (Advisory Services) -->
+            <div class="dropdown-middle">
+              <h3>Advisory Services</h3>
+              <ul>
+                <li><a href="#">Research & Development</a></li>
+                <li><a href="#">Data Examination &amp; Fraud Investigation</a></li>
+                 <li><a href="#">Quality & Strategic Assurance</a></li>
+                <li><a href="#">System-based Audit</a></li>
+              </ul>
+            </div>
+            <!-- Right panel (Process Automation Services) -->
+            <div class="dropdown-right">
+              <h3>Process Automation Services</h3>
+              <ul>
+                <li><a href="#" class="wrap-text">Bank Reconciliation</a></li>
+                <li><a href="#" class="wrap-text">Master Time Sheet</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PROFESSIONAL TRAINING DROPDOWN (UPDATED) -->
+    <div class="dropdown">
+      <a href="#">Professional Training <i class="fas fa-caret-down"></i></a>
+      <div class="dropdown-content" style="width: 800px;">
+        <div class="dropdown-section">
+          <div class="dropdown-container">
+            <!-- Left panel: Overview -->
+            <div class="dropdown-left">
+              <h2>Professional Training</h2>
+              <h3>Sharpen Your Skills</h3>
+              <p>
+                Our training programs are carefully structured to equip you 
+                with practical, in-demand skills...
+              </p>
+            </div>
+            <!-- Middle panel: Highlight courses -->
+            <div class="dropdown-middle">
+              <h3>Our Courses</h3>
+              <ul>
+                <li><a href="#latest-insights">Pre-Internship Training (Accountants)</a></li>
+                <li><a href="#latest-insights">Data Management & Reconciliation</a></li>
+                <li><a href="#latest-insights">Microsoft Excel</a></li>
+                <li><a href="#latest-insights">Microsoft Power BI</a></li>
+              </ul>
+            </div>
+            <!-- Right panel: Online classes, exams, and registration -->
+            <div class="dropdown-right">
+              <h3>Enroll & Explore</h3>
+              <ul>
+                <li><a href="#" onclick="openOnlineExams()">Online Exams</a></li>
+                <li><a href="https://meet.google.com/hgy-wnnn-nej" target="_blank">Live Online Classes</a></li>
+                <li><a href="#" class="open-registration">Registration Form</a></li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END PROFESSIONAL TRAINING DROPDOWN -->
+
+    <!-- Industries -->
+    <div class="dropdown">
+      <a href="#">Industries <i class="fas fa-caret-down"></i></a>
+      <div class="dropdown-content" style="width: 600px;">
+        <div class="dropdown-section">
+          <div class="dropdown-container">
+            <!-- Left panel: Overview -->
+            <div class="dropdown-left">
+              <h2>Industries</h2>
+              <h3></h3>
+              <p></p>
+            </div>
+            <!-- Right panel: Options -->
+            <div class="dropdown-right">
+              <h3></h3>
+              <ul>
+                <li><a href="#">Non-Governmental Organizations (NGOs)</a></li>
+                <li><a href="#">Educational Services</a></li>
+                <li><a href="#">Government &amp; Public Sector</a></li>
+                <li><a href="#">Financial Services</a></li>
+                <li><a href="#">Agricultural Services</a></li>
+                <li><a href="#">Consumer &amp; Industrial Products &amp; Services</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Us -->
+    <div class="dropdown aboutus-dropdown">
+      <a href="#">About Us <i class="fas fa-caret-down"></i></a>
+      <div class="dropdown-content" style="width: 600px;">
+        <div class="dropdown-section">
+          <div class="dropdown-container">
+            <!-- Left panel: Overview -->
+            <div class="dropdown-left">
+              <h2>About FINDAT</h2>
+              <h3>Leading Forensic Data &amp; Tech Consultancy</h3>
+              <p>
+                Discover our story, mission, and the expertise that empowers businesses...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEARCH FIELD -->
+    <div class="header-search">
+      <input
+        type="text"
+        placeholder="Search..."
+        id="siteSearch"
+        onkeydown="if(event.key==='Enter'){ executeSearch(); }"
+      >
+      <i class="fas fa-search" onclick="executeSearch()"></i>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Finds all elements with class="candidate-year"
+  const candidateYears = document.querySelectorAll(".candidate-year");
+  const currentYearA = new Date().getFullYear();
+  candidateYears.forEach(el => {
+    el.textContent = currentYearA;
+  });
+</script>
+
+<!-- SECOND HEADER (PHONE, etc.) -->
+<header class="header second-header">
+  <div class="header-top">
+    <div class="header-content">
+      <img src="images/Log10.png" alt="FINDAT Logo" style="width: 100px; height: auto; margin-right: 50px;">
+      <span style="font-size: 1.5em; font-weight: bold; margin-right: 30px;"></span>
+
+      <ul class="header-top-list">
+        <li class="header-top-item">
+          <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+          <p class="item-title">
+            <strong style="color: rgb(253, 251, 248);">Call Us :</strong>
+          </p>
+          <a href="tel:01234567895" class="item-link">+260 976 913 843</a>
+        </li>
+        <li class="header-top-item">
+          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+          <p class="item-text">
+            <strong style="color: rgb(242, 250, 245);">
+              Operating Days: Monday - Friday, 08 am - 09 pm
+            </strong>
+          </p>
+        </li>
+        <li class="header-top-item">
+          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+          <p class="item-title">
+            <strong style="color: #faf2f0;">Status :</strong>
+          </p>
+          <p class="item-text" id="opening-status" class="status">Checking...</p>
+        </li>
+      </ul>
+    </div>
+    <div id="manuBtn">
+      <img src="images/menu.png" alt="menu" id="menu" />
+    </div>
+  </div>
+</header>
+
+<!-- PRELOADER -->
+<div id="preloader"></div>
+
+<!-- SIDENAV (FULL SCREEN, SLIDES FROM LEFT) -->
+<div id="sideNav">
+  <!-- Close icon -->
+  <span class="close-button">&times;</span>
+  <nav>
+    <ul>
+      <li class="dropdown">
+        <a href="#"><i class="fa fa-graduation-cap"></i> PROFESSIONAL TRAINING <i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-content">
+          <li><a href="#latest-insights"><i class="fa fa-book"></i> Courses</a></li>
+          <li><a href="https://meet.google.com/hgy-wnnn-nej" target="_blank"><i class="fa fa-video"></i> Online - Classes</a></li>
+          <li><a href="#" class="online-Exams" onclick="openOnlineExams()"><i class="fa fa-pencil-alt"></i> Online - Exams</a></li>
+        </ul>
+      </li>
+      <li><a href="Pages/Payments.html"><i class="fa fa-credit-card"></i> PAYMENT</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- 
+     ===============================
+     UPDATED SECTION AFTER SECOND HEADER
+     ===============================
+-->
+<section class="main-banner">
+  <!-- Status bars overlay (like WhatsApp/Instagram) -->
+  <div class="status-wrapper" id="statusWrapper"></div>
+
+  <!-- Left Text Column -->
+  <div class="banner-content">
+    <div class="container">
+      <p class="global-title">FORENSIC INSTITUTE OF DATA & TECHNOLOGY CONSULTANTS®</p>
+      <h1 class="banner-title">The Only Place Where You Can Get It Done</h1>
+      <p class="banner-description">
+        FINDAT® is a tech-driven management consultancy firm for business forensicists,
+        dedicated to providing advice, professional training, and operational assistance 
+        to businesses through the promotion of best practices.
+      </p>
+      <!-- "Request for a Consultant" button -->
+      <a href="#" class="cta-button open-consultant">Request for a Consultant</a>
+    </div>
+  </div>
+
+  <!-- Right Image (Slideshow) Column -->
+  <div class="banner-slideshow">
+    <img id="slideshow-image" src="images/networking.jpg" alt="Slideshow" />
+  </div>
+</section>
+
+<section id="developments">
+  <div class="developments-header">
+    <h2 class="zebra-animated">Research and Developments</h2>
+    <p class="intro-text zebra-animated">
+      The Forensic Institute of Data and Technology Consultants undertakes various research projects 
+      and has developed innovative solutions in the fields of FinTech and personnel management. 
+      These include:
+    </p>
+  </div>
+  <div class="developments-labels">
+    <div class="development-item zebra-animated-opposite">
+      <h3>ProATR</h3>
+      <p>
+        A pro-artificial transaction reconciliator that enhances operational speed 
+        in the bank reconciliation process via automation of repetitive tasks using AI.
+      </p>
+    </div>
+    <div class="development-item zebra-animated-opposite">
+      <h3>MTS</h3>
+      <p>
+        A Time tracking app that operates in real-time, 
+        monitoring the check-in and check-out of personnel.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== NEW FINDAT COMMITMENT SECTION ==================== -->
+<section id="commitment-section">
+  <div class="container commitment-container">
+    <p>Current Initiatives</p>
+    <!-- Top row of 3 images/cards -->
+    <div class="commitment-cards">
+      <div class="commitment-card">
+        <img src="images/banner.png" alt="Mountain objective">
+        <h3>Our fixed objective</h3>
+      </div>
+      <div class="commitment-card">
+        <img src="images/FIO.jpg" alt="Planting action">
+        <h3>Enhance ambition and enable action</h3>
+      </div>
+      <div class="commitment-card">
+        <img src="images/Meet.png" alt="Forest outcomes">
+        <h3>Inclusive process for inclusive outcomes</h3>
+      </div>
+    </div>
+    
+    <!-- Main text and stats -->
+    <div class="commitment-info">
+      <p>
+        FINDAT Consultants is committed to delivering specialized, data-driven 
+        solutions that modernize organizational processes, reduce inefficiencies, 
+        and foster sustainable innovation. Our aim is to enhance operational 
+        efficiency by 40% across Africa and expand advanced analytics adoption by 30% in Zambia 
+        by 2030, positioning ourselves as a hub for advanced technological developments and research.
+      </p>
+      
+      <!-- Stats row -->
+      <div class="commitment-stats">
+        <!-- First stat -->
+        <div class="commitment-stat">
+          <h2><span class="count" data-target="40">0</span>%</h2>
+          <p>
+            BY 2030 <br>
+            Our target for operational efficiency improvement
+          </p>
+        </div>
+        <!-- Second stat -->
+        <div class="commitment-stat">
+          <h2><span class="count" data-target="30">0</span>%</h2>
+          <p>
+            BY 2030 <br>
+            Expansion of advanced analytics adoption
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== END FINDAT COMMITMENT SECTION ==================== -->
+
+<!-- REGISTRATION FORM MODAL -->
+<div id="registration-form" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form 
+      action="https://script.google.com/macros/s/AKfycbxT4CUKy57upd-d3kWysBEdzOVbwgCfpeizTWWE49WKTN74Z_y2GOwPgK2KiBZ9j27_5w/exec" 
+      method="post"
+      name="registration-form"
+      id="registrationForm"
+    >
+      <h2>Course Registration</h2>
+      <input type="date" name="date" placeholder="Registration Date" required>
+      <input type="text" name="firstName" placeholder="First Name" required>
+      <input type="text" name="lastName" placeholder="Last Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="text" name="phoneNumber" placeholder="Phone Number" required>
+      <input type="text" name="location" placeholder="Location" required>
+
+      <fieldset>
+        <legend>Select your course of interest:</legend>
+        <label><input type="checkbox" name="msexcel" value="✔"> MS Excel</label>
+        <label><input type="checkbox" name="sql" value="✔"> SQL</label>
+        <label><input type="checkbox" name="mspowerbi" value="✔"> MS Power Bi</label>
+        <label><input type="checkbox" name="tableau" value="✔"> Tableau</label>
+      </fieldset>
+
+      <input type="submit" value="Submit" id="submit">
+    </form>
+    <div id="formResponse"></div>
+  </div>
+</div>
+
+<!-- CONSULTANT MODAL -->
+<div id="consultant-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-consultant">&times;</span>
+    <form id="consultantForm">
+      <h2>Request a Consultant</h2>
+      
+      <!-- Name -->
+      <input 
+        type="text"
+        name="clientName"
+        placeholder="Your Name"
+        required
+      />
+
+      <!-- Email -->
+      <input 
+        type="email"
+        name="clientEmail"
+        placeholder="Your Email"
+        required
+      />
+
+      <!-- Phone -->
+      <input 
+        type="text"
+        name="clientPhone"
+        placeholder="Your Phone Number"
+        required
+      />
+
+      <!-- Services needed -->
+      <label for="servicesNeeded" style="margin-left: 5%; display: block;">Select Service Needed</label>
+      <select name="servicesNeeded" id="servicesNeeded" required>
+        <option value="">-- Choose a Service --</option>
+        <option value="Data Visualization">Data Visualization</option>
+        <option value="Reporting">Management Report</option>
+        <option value="Data Examination">Data Examination</option>
+        <option value="Technological Development">Process Automation</option>
+        <option value="Fraud Investigation">Fraud Investigation</option>
+        <option value="Strategy Development">Strategy Development</option>
+      </select>
+
+      <!-- Type of consultant -->
+      <label for="consultantType" style="margin-left: 5%; display: block;">Type of Consultant</label>
+      <select name="consultantType" id="consultantType" required>
+        <option value="">-- Choose a Consultant Type --</option>
+        <option value="Business Forensicists">Business Forensicists (Administration)</option>
+        <option value="Financial Intelligence Officer">Financial Intelligence Officer</option>
+        <option value="Forensic Accountant">Forensic Accountant</option>
+        <option value="Reconciliation Officer">Reconciliation Officer</option>
+        <option value="IT & Data Scientist">IT & Data Scientist</option>
+        <option value="Cybersecurity Specialist">Cybersecurity Specialist</option>
+        <option value="Research/Strategy Consultant">Research/Strategy Consultant</option>
+        <option value="Grant Proposal/Policy Consultant">Grant Proposal/Policy Consultant</option>
+      </select>
+
+      <!-- Project Duration -->
+      <label for="projectDuration" style="margin-left: 5%; display: block;">Project Duration</label>
+      <input 
+        type="text"
+        name="projectDuration"
+        id="projectDuration"
+        placeholder="e.g. 2 weeks, 1 month, etc."
+        required
+      />
+
+      <button type="submit">Submit Request</button>
+    </form>
+  </div>
+</div>
+<!-- End Consultant Modal -->
+
+<!-- =====================================
+     FEATURES SECTION WITH RANDOM SLIDER
+     ===================================== -->
+<section id="feature">
+  <div class="title-text">
+    <p>FEATURES</p>
+    <h1>Why Choose Us</h1>
+  </div>
+
+  <div class="feature-box">
+    <!-- Left side: The text/features -->
+    <div class="features">
+      <h1>Experienced Staff</h1>
+      <div class="features-desc">
+        <div class="feature-icon">
+          <i class="fa fa-star"></i>
+        </div>
+        <div class="feature-text">
+          <p>
+            Our team comprises seasoned professionals with extensive experience in finance, 
+            data analysis, and technology...
+          </p>
+        </div>
+      </div>
+
+      <h1>Pre Booking Via Calls</h1>
+      <div class="features-desc">
+        <div class="feature-icon">
+          <i class="fa fa-phone"></i>
+        </div>
+        <div class="feature-text">
+          <p>
+            We believe in a personal touch. You can pre-book your consultations 
+            via direct calls, allowing us to better understand your needs...
+          </p>
+        </div>
+      </div>
+
+      <h1>Affordable Cost</h1>
+      <div class="features-desc">
+        <div class="feature-icon">
+          <i class="fa fa-dollar"></i>
+        </div>
+        <div class="feature-text">
+          <p>
+            We believe in providing top-notch consultancy services at 
+            a cost that is accessible to a wide range of clients...
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side: Photo slider (changes images randomly) -->
+    <div class="feature-slider">
+      <!-- The src will be replaced randomly by JavaScript -->
+      <img id="featureSliderImage" src="images/slider1.jpg" alt="Random Slide">
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS SECTION -->
+<section id="clients">
+  <h2>Our Clients</h2>
+  <div class="client-logos-container">
+    <div class="client-logos">
+      <img src="images/bu.png" alt="Client Logo 1">
+      <img src="images/wise.png" alt="Client Logo 2">
+      <img src="images/ADRA.png" alt="Client Logo 3">
+      <img src="images/cz.png" alt="Client Logo 4">
+      <img src="images/ru.png" alt="Client Logo 5">
+      <img src="images/mu.png" alt="Client Logo 6">
+      <img src="images/ZCAS.png" alt="Client Logo 7">
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE SECTION -->
+<section id="service">
+  <div class="title-text">
+    <p>CONSULTANCY SERVICES</p>
+    <h1>We Provide Better</h1>
+  </div>
+  <div class="service-box">
+    <div class="single-service">
+      <img src="images/Pic-1.png" alt="">
+      <div class="overlay"></div>
+      <div class="service-desc">
+        <h3>Data Visualization</h3>
+        <hr>
+        <p>High-quality and intuitive visuals for swift insights.</p>
+      </div>
+    </div>
+    <div class="single-service">
+      <img src="images/pic-2.jpg" alt="">
+      <div class="overlay"></div>
+      <div class="service-desc">
+        <h3>Reporting</h3>
+        <hr>
+        <p>
+          High-quality reporting services in Finance, HR, Sales &amp; Marketing, 
+          Production, and Health care...
+        </p>
+      </div>
+    </div>
+    <div class="single-service">
+      <img src="images/pic-3.jpg" alt="">
+      <div class="overlay"></div>
+      <div class="service-desc">
+        <h3>Data Examination</h3>
+        <hr>
+        <p>
+          Analyzing specific data sets to verify their accuracy, 
+          reliability, and identify anomalies.
+        </p>
+      </div>
+    </div>
+    <div class="single-service">
+      <img src="images/pic-4.jpg" alt="">
+      <div class="overlay"></div>
+      <div class="service-desc">
+        <h3>Technological Development</h3>
+        <hr>
+        <p>
+          Building intuitive websites and applications to automate 
+          and optimize business processes. We also provide AI-related services.
+        </p>
+      </div>
+    </div>
+
+    <div class="single-service">
+      <img src="images/Risk.jpg" alt="">
+      <div class="overlay"></div>
+      <div class="service-desc">
+        <h3>Risk Assessment</h3>
+        <hr>
+        <p>
+          Identifying risks using best analytical practices and mitigating against them.
+        </p>
+      </div>
+    </div>
+
+    <div class="single-service">
+      <img src="images/FinInT.png" alt="">
+      <div class="overlay"></div>
+      <div class="service-desc">
+        <h3>Financial Intelligence</h3>
+        <hr>
+        <p>
+          Investigating and detecting financial crimes, money laundering, and fraud patterns.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST INSIGHTS SECTION WITH GIF BACKGROUND -->
+<section id="latest-insights">
+  <!-- New container for the glass effect -->
+  <div class="insights-content">
+    <div class="insights-header">
+      <h2>Latest insights</h2>
+      <p>4 results</p>
+    </div>
+
+    <!-- The 4 cards: hidden by default; we'll show them via pagination in JS -->
+    <div class="insights-grid">
+      <article class="insight-card">
+        <small class="insight-date">19/01/25</small>
+        <h3 class="insight-title">WhatsApp Hacks & AI Scams Protect Yourself from Cyber Fraud</h3>
+        <p class="insight-desc">
+          Cybercriminals use AI-powered voice cloning and deepfakes to hijack WhatsApp accounts...
+        </p>
+        <iframe
+          src="https://www.youtube.com/embed/_TwASHkFXoc?si=IlI7VeJYGPPO30If"
+          height="200"
+          title="YouTube video player"
+          allowfullscreen
+        ></iframe>
+      </article>
+
+      <article class="insight-card">
+        <small class="insight-date">27/01/25</small>
+        <h3 class="insight-title">Internet Fraud: The Common Types You Should Know</h3>
+        <p class="insight-desc">
+          Internet fraud is everywhere—phishing emails, fake dating profiles...
+        </p>
+        <iframe
+          src="https://www.youtube.com/embed/qCVTG3_7TBU?si=sQHRgp3GdA0mtu1P"
+          height="200"
+          title="YouTube video player"
+          allowfullscreen
+        ></iframe>
+      </article>
+
+      <article class="insight-card">
+        <small class="insight-date">15/01/25</small>
+        <h3 class="insight-title">How Data Analytics work per domain</h3>
+        <p class="insight-desc">
+          Data Through the Convex Lens of Domains; a deep dive into how the analysis of data works per domain...
+        </p>
+        <iframe
+          src="https://www.youtube.com/embed/19l5ZGxs4WY?si=c3AbEt9N1DCtGDFu"
+          height="200"
+          title="YouTube video player"
+          allowfullscreen
+        ></iframe>
+      </article>
+
+      <article class="insight-card">
+        <small class="insight-date">05/11/24</small>
+        <h3 class="insight-title">Understanding the hidden meaning of Data</h3>
+        <p class="insight-desc">
+          The video explains the distinction between mere raw facts and the value derived from analyzing these data points...
+        </p>
+        <iframe
+          src="https://www.youtube.com/embed/rEkgPBUH__0?si=9-ikuDfdOYiPmwx6"
+          height="200"
+          title="YouTube video player"
+          allowfullscreen
+        ></iframe>
+      </article>
+    </div>
+
+    <!-- Simple pagination control -->
+    <div class="insights-pagination">
+      <button id="prevBtn">Previous</button>
+      <span id="pageIndicator"></span>
+      <button id="nextBtn">Next</button>
+    </div>
+  </div>
+</section>
+<!-- END LATEST INSIGHTS SECTION -->
+
+<!-- "Read More" Modal -->
+<div id="readMoreModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>More Information</h2>
+    <h4>Our Vision:</h4>
+    <p>
+      At FINDAT Consultants, we see a future where data is the catalyst...
+    </p>
+    <h4>Our Mission:</h4>
+    <p>
+      Our dual mission is to empower organizations by turning data into actionable insights...
+    </p>
+    <h4>What We Do:</h4>
+    <p>
+      We specialize in providing data-driven business solutions...
+    </p>
+    <h4>Our Approach:</h4>
+    <p>
+      We combine collaborative learning, ethical data practices, 
+      and continuous innovation...
+    </p>
+    <h4>Schedule a meeting with us and we will give you insights with Precision and Innovation.</h4>
+    <p>You are just a call away from getting it done.</p>
+  </div>
+</div>
+
+<!-- FOOTER SECTION -->
+<footer class="footer">
+  <div class="container">
+    <div class="social-links">
+      <a href="https://www.facebook.com//simonjohn.mwanza" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/findat_consultants/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/company/92780932/admin/feed/posts/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.Youtube.com/channel/UC2OKXIauaznE1F-6A7UCKLw" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://api.whatsapp.com/send/?phone=%2B260976913843" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p>&copy; <span id="currentYear"></span> FINDAT Consultants. All Rights Reserved.</p>
+    <p>Unauthorized duplication or publication of any materials from this site is expressly prohibited.</p>
+  </div>
+</footer>
+
+<!-- =========================
+     JAVASCRIPT SECTION
+     ========================= -->
+<script>
+  /***************************************************
+   * 0) HELPER FUNCTIONS FOR SEARCH HIGHLIGHT
+   ***************************************************/
+  function removeHighlights() {
+    const highlights = document.querySelectorAll('.search-highlight');
+    highlights.forEach(span => {
+      const textNode = document.createTextNode(span.textContent);
+      span.parentNode.replaceChild(textNode, span);
+    });
+  }
+
+  function findAndHighlightFirst(query) {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    const lowerCaseQuery = query.toLowerCase();
+    let node;
+
+    while (node = walker.nextNode()) {
+      const nodeText = node.nodeValue.toLowerCase();
+      const index = nodeText.indexOf(lowerCaseQuery);
+
+      if (index !== -1) {
+        // Found text in this text node
+        const range = document.createRange();
+        range.setStart(node, index);
+        range.setEnd(node, index + query.length);
+
+        const highlightSpan = document.createElement('span');
+        highlightSpan.classList.add('search-highlight');
+        highlightSpan.style.backgroundColor = 'yellow';
+        highlightSpan.style.fontWeight = 'bold';
+
+        range.surroundContents(highlightSpan);
+        highlightSpan.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /* 1) SEARCH FUNCTION */
+  function executeSearch() {
+    const query = document.getElementById("siteSearch").value.trim();
+    if (!query) {
+      alert("Please enter a search term.");
+      return;
+    }
+    removeHighlights();
+    const found = findAndHighlightFirst(query);
+    if (!found) {
+      alert(`No results found for: "${query}"`);
+    }
+  }
+
+  /***************************************************
+   * 2) SIDENAV SLIDE-OUT
+   ***************************************************/
+  var manuBtn = document.getElementById('manuBtn');
+  var sideNav = document.getElementById('sideNav');
+  var menu = document.getElementById('menu');
+  var closeButton = document.querySelector('#sideNav .close-button');
+
+  sideNav.style.left = '-100%';
+
+  if (manuBtn) {
+    manuBtn.onclick = function(e) {
+      e.stopPropagation();
+      if (sideNav.style.left === '-100%') {
+        sideNav.style.left = '0';
+        menu.src = "images/close.png";
+      } else {
+        sideNav.style.left = '-100%';
+        menu.src = "images/menu.png";
+      }
+    };
+  }
+  if (closeButton) {
+    closeButton.onclick = function() {
+      sideNav.style.left = '-100%';
+      menu.src = "images/menu.png";
+    };
+  }
+  document.addEventListener('click', function(e) {
+    if (
+      sideNav &&
+      menu &&
+      e.target !== sideNav &&
+      !sideNav.contains(e.target) &&
+      e.target !== manuBtn &&
+      !manuBtn.contains(e.target)
+    ) {
+      sideNav.style.left = '-100%';
+      menu.src = "images/menu.png";
+    }
+  });
+
+  /***************************************************
+   * 3) SMOOTH SCROLL
+   ***************************************************/
+  var scroll = new SmoothScroll('a[href*="#"]', {
+    speed: 1000,
+    speedAsDuration: true
+  });
+
+  /***************************************************
+   * 4) PRELOADER
+   ***************************************************/
+  var loader = document.getElementById('preloader');
+  window.addEventListener("load", function() {
+    if(loader) loader.style.display = "none";
+  });
+
+  /***************************************************
+   * 5) REGISTRATION MODAL
+   ***************************************************/
+  var registrationModal = document.getElementById('registration-form');
+  var openRegBtn = document.getElementsByClassName('open-registration')[0];
+  var closeRegSpan = document.getElementsByClassName('close')[0];
+  var regForm = document.getElementById('registrationForm');
+
+  if(openRegBtn) {
+    openRegBtn.onclick = function() {
+      registrationModal.style.display = "block";
+      if(regForm) regForm.reset();
+    };
+  }
+  if(closeRegSpan) {
+    closeRegSpan.onclick = function() {
+      registrationModal.style.display = "none";
+    };
+  }
+  window.onclick = function(event) {
+    if(event.target === registrationModal) {
+      registrationModal.style.display = 'none';
+    }
+  };
+
+  // Password prompt for Online Exams
+  const correctPassword = "Admin@123";
+  function openOnlineExams() {
+    const enteredPassword = prompt("Enter the password to access online exams:");
+    if (enteredPassword === correctPassword) {
+      window.location.href = "Pages/Exams.html";
+    } else {
+      alert("Incorrect password. Please get the password from the admin.");
+    }
+  }
+  window.openOnlineExams = openOnlineExams;
+
+  /***************************************************
+   * 6) OPENING HOURS STATUS
+   ***************************************************/
+  function updateOpeningStatus() {
+    const now = new Date();
+    const dayOfWeek = now.getDay(); // 0=Sun, 1=Mon, ...
+    const hours = now.getHours();
+
+    const openingTime = 8;
+    const lunchStartTime = 13;
+    const lunchEndTime = 14;
+    const closingTime = 21;
+
+    let status = "Closed";
+    let statusColor = "red";
+
+    if(dayOfWeek >= 1 && dayOfWeek <= 5) {
+      if (hours >= openingTime && hours < lunchStartTime) {
+        status = "Open Now";
+        statusColor = "green";
+      } else if(hours >= lunchStartTime && hours < lunchEndTime) {
+        status = "Lunch Break";
+        statusColor = "orange";
+      } else if(hours >= lunchEndTime && hours < closingTime) {
+        status = "Open Now";
+        statusColor = "green";
+      }
+    }
+    const statusElement = document.getElementById("opening-status");
+    if(statusElement) {
+      statusElement.textContent = status;
+      statusElement.style.color = statusColor;
+    }
+  }
+  updateOpeningStatus();
+  setInterval(updateOpeningStatus, 60000);
+
+  /***************************************************
+   * 7) CURRENT YEAR
+   ***************************************************/
+  const yearSpan = document.getElementById('currentYear');
+  if(yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+
+  /***************************************************
+   * 8) CONSULTANT MODAL => WHATSAPP SUBMISSION
+   ***************************************************/
+  const consultantModal = document.getElementById('consultant-modal');
+  const openConsultantBtn = document.querySelector('.open-consultant');
+  const closeConsultantSpan = document.querySelector('.close-consultant');
+  const consultantForm = document.getElementById('consultantForm');
+
+  if(openConsultantBtn) {
+    openConsultantBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      consultantModal.style.display = 'block';
+    });
+  }
+  if(closeConsultantSpan) {
+    closeConsultantSpan.onclick = function() {
+      consultantModal.style.display = 'none';
+    };
+  }
+  window.addEventListener('click', function(event) {
+    if(event.target === consultantModal) {
+      consultantModal.style.display = 'none';
+    }
+  });
+
+  if(consultantForm) {
+    consultantForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(consultantForm);
+
+      const clientName = formData.get('clientName');
+      const clientEmail = formData.get('clientEmail');
+      const clientPhone = formData.get('clientPhone');
+      const servicesNeeded = formData.get('servicesNeeded');
+      const consultantType = formData.get('consultantType');
+      const projectDuration = formData.get('projectDuration');
+
+      const message =
+`Request for a Consultant:
+
+Name: ${clientName}
+Email: ${clientEmail}
+Phone: ${clientPhone}
+Service Needed: ${servicesNeeded}
+Consultant Type: ${consultantType}
+Project Duration: ${projectDuration}`;
+
+      const whatsAppPhone = "+260976913843";
+      const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsAppPhone}&text=${encodeURIComponent(message)}`;
+
+      // Open WhatsApp with pre-filled message
+      window.open(whatsappURL, "_blank");
+
+      consultantModal.style.display = 'none';
+      consultantForm.reset();
+    });
+  }
+
+  /***************************************************
+   * 9) SLIDESHOW + STATUS BARS
+   ***************************************************/
+  const images = [
+    "status/data.jpg",
+    "status/pc.png",
+    "status/Tutor.gif",
+    "status/Office.jpg"
+  ];
+  const displayDuration = 4000; // how long each image is shown
+  const fadeDuration = 800;     // fade effect in ms
+
+  const slideshowImage = document.getElementById("slideshow-image");
+  const statusWrapper = document.getElementById("statusWrapper");
+
+  images.forEach(() => {
+    const bar = document.createElement("div");
+    bar.classList.add("status-bar");
+    const barFill = document.createElement("div");
+    barFill.classList.add("status-bar-fill");
+    bar.appendChild(barFill);
+    statusWrapper.appendChild(bar);
+  });
+
+  const allBars = Array.from(document.querySelectorAll(".status-bar-fill"));
+  let currentIndex = 0;
+  slideshowImage.src = images[0];
+
+  function showNextImage() {
+    slideshowImage.style.opacity = 0;
+    setTimeout(() => {
+      allBars[currentIndex].style.width = "0%";
+      currentIndex = (currentIndex + 1) % images.length;
+      slideshowImage.src = images[currentIndex];
+      slideshowImage.style.opacity = 1;
+      animateProgressBar(currentIndex);
+    }, fadeDuration);
+  }
+  function animateProgressBar(index) {
+    allBars[index].style.width = "0%";
+    void allBars[index].offsetWidth; // trigger reflow
+    allBars[index].style.transitionDuration = displayDuration + "ms";
+    allBars[index].style.width = "100%";
+  }
+  animateProgressBar(currentIndex);
+  setInterval(showNextImage, displayDuration);
+
+  /***************************************************
+   * 10) COMMITMENT STATS ANIMATION
+   ***************************************************/
+  window.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.count');
+    const speed = 50; 
+
+    counters.forEach(counter => {
+      const animateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+        const increment = Math.ceil(target / speed);
+
+        if (current < target) {
+          counter.innerText = Math.min(current + increment, target);
+          setTimeout(animateCount, 40);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      animateCount();
+    });
+  });
+
+  /***************************************************
+   * 11) RANDOM PHOTO SLIDER (FEATURES SECTION)
+   ***************************************************/
+  const sliderImages = [
+    "images/CFO.jpg"
+  ];
+  const featureSliderImg = document.getElementById("featureSliderImage");
+  const featureSliderInterval = 4000;
+
+  function showRandomFeatureImage() {
+    const randIndex = Math.floor(Math.random() * sliderImages.length);
+    featureSliderImg.src = sliderImages[randIndex];
+  }
+  showRandomFeatureImage();
+  setInterval(showRandomFeatureImage, featureSliderInterval);
+
+  /***************************************************
+   * 12) LATEST INSIGHTS PAGINATION
+   ***************************************************/
+  const insightCards = Array.from(document.querySelectorAll(".insight-card"));
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const pageIndicator = document.getElementById("pageIndicator");
+
+  let currentPage = 1;
+  const itemsPerPage = 3;
+  const totalItems = insightCards.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  function renderPage(page) {
+    insightCards.forEach(card => card.style.display = "none");
+
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    insightCards.slice(startIndex, endIndex).forEach(card => {
+      card.style.display = "block";
+    });
+
+    pageIndicator.textContent = `Page ${page} of ${totalPages}`;
+
+    prevBtn.disabled = (page === 1);
+    nextBtn.disabled = (page === totalPages);
+
+    if (prevBtn.disabled) {
+      prevBtn.classList.add("disabled");
+    } else {
+      prevBtn.classList.remove("disabled");
+    }
+    if (nextBtn.disabled) {
+      nextBtn.classList.add("disabled");
+    } else {
+      nextBtn.classList.remove("disabled");
+    }
+  }
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPage(currentPage);
+    }
+  });
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPage(currentPage);
+    }
+  });
+  renderPage(currentPage);
+</script>
+
+<!-- Ionicons (for icons) -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
